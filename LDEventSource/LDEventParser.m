@@ -16,7 +16,6 @@
 @property (nonatomic, copy) NSString *eventString;
 @property (nonatomic, strong) LDEvent *event;
 @property (nonatomic, strong) NSNumber *retryInterval;
-@property (nonatomic, copy) NSString *remainingEventString;
 @end
 
 @implementation LDEventParser
@@ -37,7 +36,6 @@
     if (self.eventString.length == 0) { return; }
 
     NSArray<NSString*> *linesToParse = [self linesToParseFromEventString];
-    self.remainingEventString = [self remainingEventStringAfterParsingEventString];
     if (linesToParse.count == 0) { return; }
 
     LDEvent *event = [LDEvent new];
@@ -95,17 +93,4 @@
     return [eventStringToParse lines];
 }
 
--(nullable NSString*)remainingEventStringAfterParsingEventString {
-    if (self.eventString.length == 0) { return nil; }
-    if (!self.eventString.hasEventTerminator) { return nil; }
-
-    NSArray<NSString*> *eventStringParts = [self.eventString componentsSeparatedByString:LDEventSourceEventTerminator];
-    if (eventStringParts.count < 2) { return nil; }     //This should never happen because the guard for the terminator's presence passed...defensive
-    if (eventStringParts.count == 2 && eventStringParts[1].length == 0) { return nil; } //There is no remaining string after the terminator...this should be the normal exit
-
-    NSString *remainingEventString = [[eventStringParts subArrayFromIndex:1] componentsJoinedByString:LDEventSourceEventTerminator];
-    if (remainingEventString.length == 0) { return nil; }
-
-    return remainingEventString;
-}
 @end

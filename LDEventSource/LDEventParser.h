@@ -14,7 +14,6 @@
 @property (nonatomic, copy, readonly) NSString *eventString;
 @property (nonatomic, strong, readonly) LDEvent *event;
 @property (nonatomic, strong, readonly) NSNumber *retryInterval;
-@property (nonatomic, copy, readonly) NSString *remainingEventString;
 
 +(instancetype)eventParserWithEventString:(NSString*)eventString;
 -(instancetype)initWithEventString:(NSString*)eventString;

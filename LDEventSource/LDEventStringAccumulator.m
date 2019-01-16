@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LDEventStringAccumulator.h"
 #import "NSString+LDEventSource.h"
+#import "NSArray+LDEventSource.h"
 
 @implementation LDEventStringAccumulator
 -(void)accumulateEventStringWithString:(NSString*)eventString {
@@ -28,4 +29,14 @@
 -(void)reset {
     self.eventString = nil;
 }
+
+-(void)removeFirstEvent {
+    NSArray<NSString*> *eventStringParts = [self.eventString componentsSeparatedByString:LDEventSourceEventTerminator];
+    if (eventStringParts.count > 1) {
+        self.eventString = [[eventStringParts subArrayFromIndex:1] componentsJoinedByString:LDEventSourceEventTerminator];
+    } else {
+        [self reset];
+    }
+}
+
 @end

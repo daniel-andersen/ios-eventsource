@@ -161,9 +161,9 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
     NSString *eventString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     @synchronized(self) {
         [self.eventStringAccumulator accumulateEventStringWithString:eventString];
-        if ([self.eventStringAccumulator isReadyToParseEvent]) {
+        while ([self.eventStringAccumulator isReadyToParseEvent]) {
             NSString *accumulatedEventString = [self.eventStringAccumulator.eventString copy];
-            [self.eventStringAccumulator reset];
+            [self.eventStringAccumulator removeFirstEvent];
             [self parseEventString:accumulatedEventString];
         }
     }
@@ -183,9 +183,6 @@ didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSe
     }
     if (parser.retryInterval != nil) {
         self.retryInterval = [parser.retryInterval doubleValue];
-    }
-    if (parser.remainingEventString.length > 0 && parser.remainingEventString.hasEventPrefix) {
-        [self parseEventString:parser.remainingEventString];
     }
 }
 

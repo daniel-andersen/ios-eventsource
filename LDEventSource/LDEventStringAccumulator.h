@@ -14,4 +14,6 @@
 -(void)accumulateEventStringWithString:(NSString*)eventString;
 -(BOOL)isReadyToParseEvent;
 -(void)reset;
+-(void)removeFirstEvent;
+
 @end

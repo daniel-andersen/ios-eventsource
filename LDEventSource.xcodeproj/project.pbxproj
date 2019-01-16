@@ -337,7 +337,6 @@
 				835B123020E5A319009C2ACB /* Frameworks */,
 				835B123120E5A319009C2ACB /* Resources */,
 				B152A38C9EC9EA6FF7527908 /* [CP] Embed Pods Frameworks */,
-				B599EA3A3CD6A2D759F79719 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -435,21 +434,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DarklyEventSourceTests/Pods-DarklyEventSourceTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B599EA3A3CD6A2D759F79719 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DarklyEventSourceTests/Pods-DarklyEventSourceTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F7892E50DA276A45BC668855 /* [CP] Check Pods Manifest.lock */ = {
